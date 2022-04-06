@@ -1,0 +1,49 @@
+.intro__container {
+    position: relative;
+    margin-top: 150px;
+}
+
+.intro__text {
+    width: 360px;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.intro__time {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    font-family: "Navigo", sans-serif;
+    font-size: 150px;
+    font-weight: 700;
+    line-height: 212px;
+    color: var(--accent-color);
+    margin: 0;
+}
+
+.intro__time::before,
+.intro__time::after {
+    content: "";
+    position: absolute;
+    height: 102px;
+}
+
+.intro__time::before {
+    width: 295px;
+    top: -68px;
+    right: -112px;
+    background-image: url("../icons/neon-pink-long.svg");
+}
+
+.intro__time::after {
+    width: 166px;
+    left: -108px;
+    bottom: -112px;
+    background-image: url("../icons/neon-blue.svg");
+}
+
+.intro__logo {
+    width: 150px;
+    bottom: -100px;
+    position: absolute;
+}

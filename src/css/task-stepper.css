@@ -1,0 +1,65 @@
+.task-stepper {
+    position: relative;
+    text-align: left;
+}
+
+.task-stepper--second::before {
+    content: "";
+    position: absolute;
+    height: 102px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: -29px;
+    right: 0;
+    width: 295px;
+    background-image: url("../icons/neon-pink-long.svg");
+}
+
+.task-stepper >>> .popup__content {
+    width: 500px;
+    height: 500px;
+}
+
+.task-stepper__title {
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 64px;
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+.task-stepper__text {
+    font-size: 18px;
+    line-height: 23px;
+    margin: 0;
+    margin-bottom: 26px;
+}
+
+.task-stepper--second .task-stepper__title,
+.task-stepper--second .task-stepper__preview .text,
+.task-stepper--second .task-stepper__text .text {
+    max-width: 780px;
+}
+
+.task-stepper__input {
+    width: 384px;
+    margin-right: 46px;
+}
+
+.task-stepper__input--error {
+    border-color: var(--error-color);
+}
+
+.task-stepper__content {
+    margin-bottom: 37px;
+}
+
+.task-stepper__content iframe {
+    width: 100%;
+    height: 700px;
+}
+
+.task-stepper__text table {
+    width: 100%;
+}

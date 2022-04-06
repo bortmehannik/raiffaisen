@@ -1,0 +1,50 @@
+.map__button {
+    position: fixed;
+    display: block;
+    width: 286px;
+    height: 102px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    line-height: 25px;
+    padding: 22px 14px 26px 33px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 0 5px 5px var(--assistant-shadow-color);
+    margin: 0 286px 140px auto;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.map__button::before,
+.map__button::after {
+    content: "";
+    position: absolute;
+}
+
+.map__button::after {
+    right: 0;
+    bottom: -17px;
+    border: 28px solid transparent;
+    border-right: 28px solid var(--accent-color);
+}
+
+.map__button::before {
+    width: 214px;
+    height: 262px;
+    top: -20px;
+    left: calc(100% + 6px);
+    background-image: url("../image/woman-assistant.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (min-resolution: 192dpi) {
+    .map__button::before {
+        background-image: url("../image/woman-assistant@2x.png");
+    }
+}

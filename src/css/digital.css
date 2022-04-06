@@ -1,0 +1,15 @@
+.digital-wrapper {
+    min-height: 100vh;
+    background-image: url("../image/dgtl-logo.png");
+    background-repeat: no-repeat;
+    background-size: 370px 580px;
+    background-position: right 80px;
+    padding-top: 100px;
+    box-sizing: border-box;
+}
+
+@media (min-resolution: 192dpi) {
+    .digital-wrapper {
+        background-image: url("../image/dgtl-logo@2x.png");
+    }
+}

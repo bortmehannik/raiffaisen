@@ -1,0 +1,20 @@
+.rules {
+    position: relative;
+    color: var(--basic-white-color);
+    text-align: left;
+    border-radius: 8px;
+    margin-bottom: 112px;
+}
+
+.rules::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 33px;
+    width: 166px;
+    height: 102px;
+    background-image: url("../icons/neon-pink.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,67 @@
+.tip {
+    position: fixed;
+    min-width: 233px;
+    top: 132px;
+    left: 88px;
+    color: var(--basic-white-color);
+    text-align: left;
+    background: var(--popup-bg-color);
+    box-shadow: 0 0 10px 5px var(--popup-shadow-color);
+    padding: 23px 35px 32px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    z-index: 9;
+    transition: 0.3s opacity ease-in-out;
+}
+
+.tip__title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    color: var(--basic-white-color);
+    margin: 0;
+    margin-bottom: 19px;
+}
+
+.tip__list {
+    padding: 0;
+    margin: 0;
+}
+
+.tip__item {
+    position: relative;
+    font-size: 16px;
+    line-height: 20px;
+    padding-left: 30px;
+}
+
+.tip__item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.tip__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tip__item--level::before {
+    background-image: url("../icons/level.svg");
+    background-size: 17px 18px;
+}
+
+.tip__item--points::before {
+    background-image: url("../icons/star.svg");
+}
+
+.tip__item--time::before {
+    background-image: url("../icons/clock.svg");
+    background-size: 20px 20px;
+}

@@ -1,0 +1,183 @@
+.task__activator {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+}
+
+.task__activator:hover::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    background-color: var(--hover-effect-color);
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.task__activator:hover + .tip {
+    opacity: 1;
+}
+
+[data-id^="task-image"] {
+    position: absolute;
+}
+
+[data-id="task-image--1"] {
+    bottom: 47px;
+    left: 180px;
+}
+
+[data-id="task-image--1"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--2"] {
+    bottom: 105px;
+    left: 83px;
+}
+
+[data-id="task-image--3"] {
+    bottom: 232px;
+    left: 72px;
+}
+
+[data-id="task-image--4"] {
+    bottom: 285px;
+    left: 164px;
+}
+
+[data-id="task-image--4"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--5"] {
+    bottom: 99px;
+    left: 179px;
+}
+
+[data-id="task-image--6"] {
+    bottom: 257px;
+    left: 375px;
+}
+
+[data-id="task-image--7"] {
+    bottom: 255px;
+    left: 638px;
+}
+
+[data-id="task-image--7"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--8"] {
+    bottom: 429px;
+    left: 204px;
+}
+
+[data-id="task-image--9"] {
+    bottom: 547px;
+    left: 416px;
+}
+
+[data-id="task-image--10"] {
+    bottom: 509px;
+    left: 670px;
+}
+
+[data-id="task-image--10"] button {
+    z-index: 3;
+}
+
+[data-id="task-image--11"] {
+    bottom: 456px;
+    left: 767px;
+}
+
+[data-id="task-image--12"] {
+    bottom: 681px;
+    left: 565px;
+}
+
+[data-id="task-image--13"] {
+    bottom: 631px;
+    left: 829px;
+}
+
+[data-id="task-image--13"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--14"] {
+    bottom: 684px;
+    left: 914px;
+}
+
+[data-id="task-image--15"] {
+    bottom: 859px;
+    left: 258px;
+}
+
+[data-id="task-image--16"] {
+    bottom: 810px;
+    left: 241px;
+}
+
+[data-id="task-image--16"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--17"] {
+    bottom: 862px;
+    left: 147px;
+}
+
+[data-id="task-image--17"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--18"] {
+    bottom: 1064px;
+    left: 236px;
+}
+
+[data-id="task-image--18"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--19"] {
+    bottom: 1099px;
+    left: 363px;
+}
+
+[data-id="task-image--19"] button {
+    z-index: 2;
+}
+
+[data-id="task-image--20"] {
+    bottom: 1025px;
+    left: 672px;
+}
+
+[data-id="task-image--20"] button {
+    z-index: 3;
+}
+
+[data-id="task-image--21"] {
+    bottom: 1083px;
+    left: 761px;
+}
+
+[data-id="task-image--21"] button {
+    z-index: 4;
+}
+
+/*.task__activator--success {*/
+    /*background-color: green;*/
+    /*color: #fff;*/
+/*}*/

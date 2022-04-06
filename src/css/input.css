@@ -1,0 +1,21 @@
+.input {
+    width: 100%;
+    max-width: 384px;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 23px;
+    color: var(--basic-white-color);
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 12px;
+    outline: none;
+}
+
+.input::-webkit-input-placeholder {
+    color: var(--placeholder-color);
+}
+
+.input:disabled {
+    border-color: var(--disabled-color);
+}

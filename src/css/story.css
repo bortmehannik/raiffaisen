@@ -1,0 +1,82 @@
+.story {
+    padding-bottom: 80px;
+}
+
+.story__text {
+    position: relative;
+    width: 600px;
+    font-size: 18px;
+    line-height: 23px;
+    color: var(--basic-white-color);
+    padding: 36px 61px 26px 53px;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.story__text::before,
+.story__text::after {
+    content: "";
+    position: absolute;
+    height: 102px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.story__text--right {
+    margin-left: auto;
+}
+
+.story__text:first-of-type {
+    width: 596px;
+    min-height: 246px;
+    background-image: url("../image/story-bg-1.png");
+}
+
+.story__text:first-of-type::after {
+    width: 166px;
+    bottom: -12px;
+    left: calc(100% + 15px);
+    background-image: url("../icons/neon-pink.svg");
+}
+
+.story__text:nth-of-type(2) {
+    width: 674px;
+    min-height: 277px;
+    background-image: url("../image/story-bg-2.png");
+}
+
+.story__text:nth-of-type(2)::before {
+    width: 102px;
+    bottom: -12px;
+    right: calc(100% + 15px);
+    background-image: url("../icons/neon-blue-short.svg");
+}
+
+.story__text:nth-of-type(2)::after {
+    width: 166px;
+    bottom: -72px;
+    right: 60px;
+    background-image: url("../icons/neon-blue.svg");
+}
+
+.story__text:nth-of-type(3) {
+    width: 705px;
+    min-height: 320px;
+    background-image: url("../image/story-bg-3.png");
+}
+
+.story__button {
+    position: absolute;
+}
+
+.story__text:nth-of-type(3) .story__button {
+    bottom: -15px;
+    left: 70px;
+}

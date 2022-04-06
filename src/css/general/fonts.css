@@ -1,0 +1,31 @@
+@font-face {
+    font-family: "Navigo";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/Navigo/Navigo-Bold.ttf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Navigo";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/Navigo/Navigo-Regular.ttf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ALSHauss";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/ALSHauss/ALSHauss-Variable.ttf") format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "ALSHauss";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/ALSHauss/ALSHauss-Light.otf") format("opentype");
+    font-display: swap;
+}

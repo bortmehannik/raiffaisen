@@ -1,0 +1,16 @@
+.auth {
+    height: 100vh;
+}
+
+.registration__form {
+    margin-top: 50px;
+}
+
+.auth__logo {
+    margin-bottom: 100px;
+}
+
+.registration__form,
+.sign-in__form {
+    width: 384px;
+}

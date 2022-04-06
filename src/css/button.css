@@ -1,0 +1,28 @@
+.button {
+    display: inline-block;
+    min-width: 184px;
+    height: 50px;
+    font-family: "Navigo", "ALSHauss", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    color: var(--basic-text-color);
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    padding: 11px 20px 14px;
+    box-sizing: border-box;
+}
+
+.button--transparent {
+    color: var(--accent-color);
+    background-color: transparent;
+}
+
+.button:disabled {
+    background-color: var(--disabled-color);
+}

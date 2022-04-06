@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html class="page" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта с заданиями</title>
+    <link rel="stylesheet" href="css/general.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body class="page__body">
+    <main id="app" class="main">
+        <section
+            v-if="!isStartTime && startDateTime"
+            class="intro"
+        >
+            <!--<div class="header">-->
+                <!--<div class="container header__container">-->
+                    <!--<div class="header__logo header__logo&#45;&#45;center">-->
+                        <!--<img src="image/logo_raif.svg" alt="Логотип Райффайзен">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="container intro__container">
+                <h1 class="title">Raiffeisen DGTL Fest</h1>
+
+                <p class="text intro__text">
+                    Пришло время почувствовать себя на месте специалиста Райффайзенбанка и вместе со своей командой создать проект будущего. Мы приглашаем игроков начать онлайн-квест!
+                </p>
+
+                <p class="intro__time">
+                    {{ startDateTime }}
+                    <img src="image/logo_raif.svg" class="intro__logo" alt="Логотип Райффайзен">
+                </p>
+            </div>
+        </section>
+
+        <countdown
+            class="countdown main__countdown"
+            v-else-if="countdownInfo && countdownInfo.endTime"
+            tag="div"
+            :end-time="countdownInfo.endTime"
+        >
+            <template
+                slot="process"
+                slot-scope="{ timeObj }"
+            >
+                <template v-if="teamInfo.userId">
+                    <div class="header">
+                        <div class="container header__container">
+                            <div class="header__logo">
+                                <img src="image/logo_raif.svg" alt="">
+                            </div>
+
+                            <span v-if="storyStep === 2" class="header__time">
+                                {{ `${timeObj.h}:${timeObj.m}:${timeObj.s}` }}
+                            </span>
+
+                            <result-game
+                                v-if="storyStep === 2"
+                                class="header__points"
+                                :team-info="teamInfo"
+                            ></result-game>
+                        </div>
+                    </div>
+
+                    <section v-show="storyStep === 1" class="story">
+                        <div class="container">
+                            <h2 class="title">Сюжет</h2>
+                            <p class="story__text">
+                                2029 год. Сегодня виртуальные ассистенты есть у всех крупных корпораций. Чтобы вывести рынок на новый уровень и изменить клиентский опыт, продуктовая команда Райффайзенбанка готова выделить максимум ресурсов.
+                            </p>
+                            <p class="story__text story__text--right">
+                                Ваш проект — виртуальный ассистент будущего: универсальный помощник клиентов банка и его партнерских сервисов. Он также эмпатичный собеседник, который готов поддержать беседу. Это результат синтеза последних технологических инноваций и человечности, что делает его подходящим для любого пользователя.
+                            </p>
+                            <p class="story__text">
+                                В вашей команде лучшие разработчики, которые могут реализовать весь спектр характеристик. Но ответственность за функционал и финальный вид ассистента лежит на вас — решите, какие модули интегрировать, чтобы создать самый технологичный и клиентоориентированный прототип. Для этого изучите возможные апгрейды и разберитесь, что необходимо внедрить в первую очередь.
+                                <button
+                                    class="button story__button"
+                                    type="button"
+                                    @click="incrementStoryStep(2)"
+                                >
+                                    Приступить к игре
+                                </button>
+                            </p>
+                        </div>
+                    </section>
+
+                    <div v-show="storyStep === 2" class="container map">
+                        <div class="rules">
+                            <p class="title">Правила игры</p>
+                            <div class="text-group text-group--rules">
+                                <p class="text w-45 mb-25">
+                                    В начале игры вам доступно три задания первого блока. Чтобы открыть следующий блок, выполните хотя бы одно задание из предыдущего. Всего в игре семь блоков.
+                                </p>
+                                <p class="text w-45 mb-25">
+                                    Вы можете выполнять задания в любом порядке.
+                                </p>
+                                <p class="text w-45 mb-25">
+                                    На карте есть задания трех уровней — легкие, средние и сложные. Примерное время выполнения и количество баллов за задание отображается на всплывающих подсказках.
+                                </p>
+                                <p class="text w-45 mb-25">
+                                    Результат задания — это код, за который начисляются баллы. Выполнение задания засчитывается один раз на команду. У вас не получится набрать больше баллов, даже если каждый участник индивидуально введет один и тот же код.
+                                </p>
+                                <p class="text w-45 mb-25">
+                                    Вы с командой сами определяете стратегию прохождения квеста. Делайте все, чтобы собрать больше баллов за отведенное время. Больше баллов — больше функциональных модулей для внедрения в финале!
+                                </p>
+                                <p class="text w-45 mb-25">
+                                    Распределять баллы на модули можно по истечении времени, отведенного на выполнение заданий квеста. Оставшееся время на задания отображается в правом верхнем углу.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="main__area"
+                        >
+                            <ul v-if="groups" class="group-list">
+                                <li
+                                    class="group-list__item"
+                                    v-for="(groupItem, groupIdx) in groups"
+                                    :key="`g-${groupIdx}`"
+                                >
+                                    <ul
+                                        v-if="groupItem.tasks"
+                                        class="task-list"
+                                    >
+                                        <li
+                                            v-for="(taskItem, key) in groupItem.tasks"
+                                            :key="`t-${key}`"
+                                            class="task-list__item"
+                                            :data-id="`task-image--${taskItem.stepId}`"
+                                        >
+                                            <task
+                                                :info="taskItem"
+                                                :answers="answers"
+                                                :disabled="!groupItem.access"
+                                                @success="onTaskSuccess($event)"
+                                                @update-info="onUpdateInfo"
+                                            >
+                                            </task>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </template>
+
+                <div class="container auth digital-wrapper" v-else>
+                    <img
+                        class="auth__logo"
+                        src="icons/raif-logo.svg"
+                        alt="Логотип Raiffeisen"
+                        width="159"
+                        height="63"
+                    />
+
+                    <registration
+                        v-show="showRegistration"
+                        :team-info="teamInfo"
+                        :transliteration="transliteration"
+                        @change-auth="onChangeAuth"
+                    ></registration>
+
+                    <sign-in
+                        v-show="!showRegistration"
+                        :team-info="teamInfo"
+                        :transliteration="transliteration"
+                        @success="onAuthSuccess"
+                        @change-reg="onChangeReg"
+                    ></sign-in>
+                </div>
+            </template>
+            <template
+                slot="finish"
+            >
+                <template v-if="teamInfo.userId">
+                    <countdown
+                        tag="div"
+                        :end-time="assistantTimeInfo.endTime"
+                    >
+                        <template
+                            slot="process"
+                            slot-scope="{ timeObj }"
+                        >
+                            <div class="header">
+                                <div class="container header__container">
+                                    <div class="header__logo">
+                                        <img src="image/logo_raif.svg" alt="">
+                                    </div>
+
+                                    <span
+                                        v-if="storyStep !== 4"
+                                        class="header__time"
+                                    >
+                                        {{ `${timeObj.h}:${timeObj.m}:${timeObj.s}` }}
+                                    </span>
+
+                                    <div
+                                        v-if="storyStep === 4"
+                                        class="result-game header__points"
+                                    >
+                                        {{ teamInfo.teamName }}
+                                        <span class="result-game__points">0</span>
+                                    </div>
+
+                                    <result-game
+                                        v-else
+                                        class="header__points"
+                                        :team-info="teamInfo"
+                                    ></result-game>
+                                </div>
+                            </div>
+
+                            <div v-if="storyStep !== 3 && storyStep !== 4" class="container map">
+                                <div class="rules">
+                                    <p class="title">Правила игры</p>
+                                    <div class="text-group text-group--rules">
+                                        <p class="text w-45">
+                                            В начале игры вам доступно три задания первого блока. Чтобы открыть каждый следующий блок квеста, нужно выполнить хотя бы одно задание из предыдущего. Всего в игре семь блоков.
+                                        </p>
+                                        <p class="text w-45">
+                                            Вы можете выполнять доступные вам задания в любом порядке.
+                                        </p>
+                                        <p class="text w-45">
+                                            На карте расположены задания трех уровней сложности — легкие, средние и сложные. Примерное время выполнения и количество баллов за задание отображается на всплывающих подсказках при наведении.
+                                        </p>
+                                        <p class="text w-45">
+                                            Результатом выполнения задания является код, при вводе которого начисляются баллы. Выполнение задания засчитывается один раз на команду. У Вас не получится набрать больше баллов, если каждый участник в отдельности введет код для одного и того же задания.
+                                        </p>
+                                        <p class="text w-45">
+                                            Вы с командой сами определяете стратегию прохождения квеста. Кооперируйтесь и разделяйтесь — делайте все, чтобы собрать как можно больше баллов за отведенное время. Чем больше баллов вы соберете, тем больше функциональных модулей сможете внедрить в своего виртуального ассистента в финале!
+                                        </p>
+                                        <p class="text w-45">
+                                            Возможность распределения баллов на модули откроется по истечении времени, отведенного на выполнение заданий квеста. Оставшееся время на задания отображается в правом верхнем углу.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="main__area"
+                                >
+                                    <ul v-if="groups" class="group-list">
+                                        <li
+                                            class="group-list__item"
+                                            v-for="(groupItem, groupIdx) in groups"
+                                            :key="`g-${groupIdx}`"
+                                        >
+                                            <ul
+                                                v-if="groupItem.tasks"
+                                                class="task-list"
+                                            >
+                                                <li
+                                                    v-for="(taskItem, key) in groupItem.tasks"
+                                                    :key="`t-${key}`"
+                                                    class="task-list__item"
+                                                    :data-id="`task-image--${taskItem.stepId}`"
+                                                >
+                                                    <task
+                                                        :info="taskItem"
+                                                        :answers="answers"
+                                                        :disabled="!groupItem.access || !taskItem.success"
+                                                        @success="onTaskSuccess($event)"
+                                                    >
+                                                    </task>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <button
+                                    class="button map__button"
+                                    type="button"
+                                    @click="assistantConfirmPopupShow = true"
+                                >
+                                    Перейти к разработке виртуального ассистента
+                                </button>
+                            </div>
+
+                            <!-- Показывать компонент после того, как подсчитаны все очки -->
+                            <div
+                                v-else-if="storyStep === 3"
+                                class="container"
+                            >
+                                <avatar-create
+                                    :team-info="teamInfo"
+                                    @save-points="incrementStoryStep(4)"
+                                ></avatar-create>
+                            </div>
+
+                            <div
+                                v-else-if="storyStep === 4"
+                                class="container intro__container results-pause"
+                            >
+                                <h1 class="title">Ждем результаты</h1>
+
+                                <p class="text intro__text">
+                                    Результаты будут доступны в указанное время
+                                </p>
+
+                                <p class="intro__time">
+                                    {{ resultsPauseEndDateTime }}
+                                </p>
+                            </div>
+
+                            <popup class="popup-assistant-confirm" v-show="assistantConfirmPopupShow">
+                                <p class="text">
+                                    Вы уверены, что хотите перейти к разработке виртуального ассистента?
+                                </p>
+                                <button class="button" @click="incrementStoryStep(3)">
+                                    Да
+                                </button>
+                                <button class="button" @click="assistantConfirmPopupShow = false">
+                                    Нет
+                                </button>
+                            </popup>
+                        </template>
+                        <template
+                            slot="finish"
+                        >
+                            <div class="header">
+                                <div class="container header__container">
+                                    <div class="header__logo">
+                                        <img src="image/logo_raif.svg" alt="">
+                                    </div>
+
+                                    <span class="header__time">
+                                        00:00:00
+                                    </span>
+
+                                    <div class="result-game header__points">
+                                        {{ teamInfo.teamName }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <countdown
+                                tag="div"
+                                :end-time="resultsPauseInfo.endTime"
+                            >
+                                <template
+                                    slot="process"
+                                    slot-scope="{ timeObj }"
+                                >
+                                    <div class="container intro__container results-pause">
+                                        <h1 class="title">Ждем результаты</h1>
+
+                                        <p class="text intro__text">
+                                            Результаты будут доступны в указанное время
+                                        </p>
+
+                                        <p class="intro__time">
+                                            {{ resultsPauseEndDateTime }}
+                                        </p>
+                                    </div>
+                                </template>
+                                <template
+                                    slot="finish"
+                                >
+                                    <div class="container">
+                                        <results :team-info="teamInfo"></results>
+                                    </div>
+                                </template>
+                            </countdown>
+                        </template>
+                    </countdown>
+                </template>
+
+                <div class="container auth digital-wrapper" v-else>
+                    <img
+                        class="auth__logo"
+                        src="icons/raif-logo.svg"
+                        alt="Логотип Raiffeisen"
+                        width="159"
+                        height="63"
+                    />
+
+                    <registration
+                        v-show="showRegistration"
+                        :team-info="teamInfo"
+                        :transliteration="transliteration"
+                        @change-auth="onChangeAuth"
+                    ></registration>
+
+                    <sign-in
+                        v-show="!showRegistration"
+                        :team-info="teamInfo"
+                        :transliteration="transliteration"
+                        @success="onAuthSuccess"
+                        @change-reg="onChangeReg"
+                    ></sign-in>
+                </div>
+            </template>
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer__text-block">
+                            <p class="footer__text">Sed ut perspiciatis <a href="https://www.raiffeisen.ru/new/" target="_blank">на нашем сайте</a></p>
+                            <p class="footer__text">Sed ut perspiciatis <a href="https://raiffest.ru" target="_blank">на сайте DGTL Fest</a></p>
+                        </div>
+                        <div class="footer__socials">
+                            <a href="https://vk.com/raiffeisenbankrus" class="footer__social">
+                                <img src="image/social_vk.svg" alt="VK">
+                            </a>
+                            <a href="https://web.facebook.com/raiffeisenbankrus?_rdc=1&_rdr" class="footer__social">
+                                <img src="image/social_fb.svg" alt="FB">
+                            </a>
+                            <a href="https://www.instagram.com/raiffeisenbank_rus/" class="footer__social">
+                                <img src="image/social_inst.svg" alt="Instagram">
+                            </a>
+                            <a href="https://t.me/Raiffeisenbankrus" class="footer__social">
+                                <img src="image/social_tg.svg" alt="Telegram">
+                            </a>
+                            <a href="https://twitter.com/Raiffeisen_Ru" class="footer__social">
+                                <img src="image/social_tweet.svg" alt="Tweeter">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </countdown>
+    </main>
+    <script src="js/runtime.min.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase.js"></script>
+    <script src="js/countdown.min.js"></script>
+    <script src="js/v-scroll-lock.min.js"></script>
+    <script src="js/script.min.js"></script>
+</body>
+</html>

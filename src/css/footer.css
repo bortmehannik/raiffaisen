@@ -1,0 +1,19 @@
+.footer {
+    padding: 50px 0;
+}
+
+.footer__text {
+    color: #ffffff;
+    font-family: 'Navigo';
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.footer__text a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.footer__social:not(:last-child) {
+    margin-right: 53px;
+}

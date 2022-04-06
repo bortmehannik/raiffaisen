@@ -1,0 +1,120 @@
+.results-pause {
+    margin-bottom: 250px;
+}
+
+.results .title {
+    margin-bottom: 90px;
+}
+
+.results table {
+    width: 100%;
+    border-spacing: 10px 20px;
+}
+
+.results th {
+    font-family: 'ALSHauss';
+    font-weight: 900;
+    font-size: 11px;
+    min-width: 91px;
+    max-width: 91px;
+    color: var(--accent-color);
+}
+
+.results td {
+    font-family: 'Navigo';
+    font-size: 40px;
+    line-height: 21px;
+    text-align: center;
+    color: var(--basic-text-color);
+    border-radius: 25px;
+    height: 54px;
+    font-weight: 700;
+    background: var(--basic-bg-color);
+    position: relative;
+}
+
+.results td:nth-child(2) {
+    font-size: 15px;
+}
+
+
+/*.results tr:nth-child(odd) td {*/
+    /*border: 1px solid #FF82EB;*/
+    /*color: #FF82EB;*/
+/*}*/
+
+/*.results tr:nth-child(odd) td:before {*/
+    /*content: '';*/
+    /*height: 4px;*/
+    /*width: 10px;*/
+    /*position: absolute;*/
+    /*background: #FF82EB;*/
+    /*right: -11px;*/
+    /*top: 28px;*/
+/*}*/
+
+.results tr:nth-child(odd) td:nth-child(2):before {
+    width: 12px;
+    right: -14px;
+}
+
+/*.results tr:nth-child(odd) td:nth-child(2) {*/
+    /*border: 4px solid #FF82EB;*/
+/*}*/
+
+.results tr td {
+    border: 1px solid #7299FF;
+    color: #7299FF;
+}
+
+.results tr td:nth-child(2) {
+    border: 4px solid #7299FF;
+}
+
+.results tr td:before {
+    content: '';
+    height: 4px;
+    width: 10px;
+    position: absolute;
+    background: #7299FF;
+    right: -11px;
+    top: 28px;
+}
+
+.results tr td:nth-child(2):before {
+    width: 12px;
+    right: -14px;
+}
+
+.results tr td:first-child:before,
+.results tr td:last-child:before {
+    content: none;
+}
+
+.results tr td:first-child {
+    font-family: 'Navigo';
+    font-size: 40px;
+    color: var(--accent-color);
+    border: none;
+}
+
+.results .win td {
+    border-color: var(--accent-color) !important;
+    color: var(--accent-color) !important;
+}
+
+.results .win td:before {
+    background: var(--accent-color) !important;
+}
+
+.results__text {
+    margin-bottom: 40px;
+}
+
+.results__form {
+    margin-bottom: 80px;
+}
+
+.search-form__input {
+    margin-right: 32px;
+}
